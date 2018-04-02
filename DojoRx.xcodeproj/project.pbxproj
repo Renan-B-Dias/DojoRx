@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		59DA9E56783F284D45DF5C11 /* Pods_DojoRx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F91AEBCB7D7CF9FB43221A /* Pods_DojoRx.framework */; };
 		84BA676D204E1700001C22FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA676C204E1700001C22FF /* AppDelegate.swift */; };
-		84BA676F204E1700001C22FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA676E204E1700001C22FF /* ViewController.swift */; };
-		84BA6772204E1700001C22FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BA6770204E1700001C22FF /* Main.storyboard */; };
 		84BA6774204E1700001C22FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84BA6773204E1700001C22FF /* Assets.xcassets */; };
 		84BA6777204E1700001C22FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BA6775204E1700001C22FF /* LaunchScreen.storyboard */; };
+		84BA6780204E1A05001C22FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA677E204E1A05001C22FF /* ViewController.swift */; };
+		84BA6781204E1A05001C22FF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BA677F204E1A05001C22FF /* ViewController.xib */; };
+		84BA6784204E1BFF001C22FF /* DisneyCharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA6782204E1BFF001C22FF /* DisneyCharacterCell.swift */; };
+		84BA6785204E1BFF001C22FF /* DisneyCharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BA6783204E1BFF001C22FF /* DisneyCharacterCell.xib */; };
+		84DCBBFC205319B400DDFC05 /* DisneyCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCBBFB205319B400DDFC05 /* DisneyCharacter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +24,14 @@
 		405705B2ED947E3DC48C770A /* Pods-DojoRx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DojoRx.release.xcconfig"; path = "Pods/Target Support Files/Pods-DojoRx/Pods-DojoRx.release.xcconfig"; sourceTree = "<group>"; };
 		84BA6769204E1700001C22FF /* DojoRx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DojoRx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BA676C204E1700001C22FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84BA676E204E1700001C22FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		84BA6771204E1700001C22FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84BA6773204E1700001C22FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84BA6776204E1700001C22FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84BA6778204E1700001C22FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84BA677E204E1A05001C22FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84BA677F204E1A05001C22FF /* ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		84BA6782204E1BFF001C22FF /* DisneyCharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisneyCharacterCell.swift; sourceTree = "<group>"; };
+		84BA6783204E1BFF001C22FF /* DisneyCharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisneyCharacterCell.xib; sourceTree = "<group>"; };
+		84DCBBFB205319B400DDFC05 /* DisneyCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisneyCharacter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,14 +76,41 @@
 		84BA676B204E1700001C22FF /* DojoRx */ = {
 			isa = PBXGroup;
 			children = (
+				84DCBBFE20531EEA00DDFC05 /* Models */,
+				84DCBBFD20531EE300DDFC05 /* Controllers */,
 				84BA676C204E1700001C22FF /* AppDelegate.swift */,
-				84BA676E204E1700001C22FF /* ViewController.swift */,
-				84BA6770204E1700001C22FF /* Main.storyboard */,
 				84BA6773204E1700001C22FF /* Assets.xcassets */,
 				84BA6775204E1700001C22FF /* LaunchScreen.storyboard */,
 				84BA6778204E1700001C22FF /* Info.plist */,
 			);
 			path = DojoRx;
+			sourceTree = "<group>";
+		};
+		84DCBBFD20531EE300DDFC05 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				84DCBBFF20531EF700DDFC05 /* views */,
+				84BA677E204E1A05001C22FF /* ViewController.swift */,
+				84BA677F204E1A05001C22FF /* ViewController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		84DCBBFE20531EEA00DDFC05 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84DCBBFB205319B400DDFC05 /* DisneyCharacter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84DCBBFF20531EF700DDFC05 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				84BA6782204E1BFF001C22FF /* DisneyCharacterCell.swift */,
+				84BA6783204E1BFF001C22FF /* DisneyCharacterCell.xib */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		F5B16B7DEAB0A2A80D1A4B43 /* Frameworks */ = {
@@ -151,8 +184,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84BA6777204E1700001C22FF /* LaunchScreen.storyboard in Resources */,
+				84BA6785204E1BFF001C22FF /* DisneyCharacterCell.xib in Resources */,
+				84BA6781204E1A05001C22FF /* ViewController.xib in Resources */,
 				84BA6774204E1700001C22FF /* Assets.xcassets in Resources */,
-				84BA6772204E1700001C22FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +253,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84BA676F204E1700001C22FF /* ViewController.swift in Sources */,
+				84BA6780204E1A05001C22FF /* ViewController.swift in Sources */,
+				84DCBBFC205319B400DDFC05 /* DisneyCharacter.swift in Sources */,
+				84BA6784204E1BFF001C22FF /* DisneyCharacterCell.swift in Sources */,
 				84BA676D204E1700001C22FF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,14 +263,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		84BA6770204E1700001C22FF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84BA6771204E1700001C22FF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		84BA6775204E1700001C22FF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
