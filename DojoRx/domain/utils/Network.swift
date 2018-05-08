@@ -7,13 +7,9 @@
 //
 
 import Foundation
+import RxSwift
 
 class Network {
-    
-    //        "Hiro", "Tadashi"
-    //        "Edna Mode", "Stitch"
-    //        "Dory"
-    //        "Lilo", "Fix-It Felix, Jr."
     
     private let characters = [
         DisneyCharacter(image: #imageLiteral(resourceName: "anger"), name: "Anger", description: "That's Anger. He cares very deeply about things being fair."),
@@ -37,11 +33,55 @@ class Network {
         DisneyCharacter(image: #imageLiteral(resourceName: "buzz"), name: "Buzz Lightyear", description: "Buzz Lightyear's sole mission keeping Andy's toy family together")
     ]
     
-    func getCharacters() -> [DisneyCharacter] {
-        return characters
+    func getCharacters() -> Observable<[DisneyCharacter]> {
+        return Observable.create { [weak self] (observer) in
+            guard let characters = self?.characters else {
+                observer.onError(NSError(domain: "Failed to get characters!!", code: -1))
+                return Disposables.create()
+            }
+            
+            if characters.isEmpty {
+                observer.onError(NSError(domain: "Characters are empty!!", code: -1))
+            } else {
+                observer.onNext(characters)
+                observer.onCompleted()
+            }
+            
+            return Disposables.create()
+        }
     }
     
-    func getCharacterOf(name: String) -> DisneyCharacter? {
-        return characters.first { $0.name == name }
+//    func getCharacters() -> Single<[DisneyCharacter]> {
+//        return Single.create { [weak self] (observer) in
+//            guard let characters = self?.characters else {
+//                observer(.error(NSError(domain: "Failed to get characters!!", code: -1)))
+//                return Disposables.create()
+//            }
+//
+//            if characters.isEmpty {
+//                observer(.error(NSError(domain: "Characters are empty!!", code: -1)))
+//            } else {
+//                observer(.success(characters))
+//            }
+//
+//            return Disposables.create()
+//        }
+//    }
+    
+    func getCharacterOf(name: String) -> Single<DisneyCharacter> {
+        return Single.create { [weak self] (observer) in
+            guard let characters = self?.characters else {
+                observer(.error(NSError(domain: "Failed to get characters!!", code: -1)))
+                return Disposables.create()
+            }
+            
+            if let character = characters.first(where: { $0.name == name }) {
+                observer(.success(character))
+            } else {
+                observer(.error(NSError(domain: "Did not find character!!", code: -1)))
+            }
+            
+            return Disposables.create()
+        }
     }
 }

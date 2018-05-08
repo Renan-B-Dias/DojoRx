@@ -7,30 +7,39 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol DisneyCharacterCellProtocol {
-    var image: UIImage { get }
-    var name: String { get }
-    var description: String { get }
+    var imageObservable: Observable<UIImage> { get }
+    var nameObservable: Observable<String> { get }
+    var descriptionObservable: Observable<String> { get }
 }
 
 class DisneyCharacterCellViewModel: DisneyCharacterCellProtocol {
-    let disneyCharacter: DisneyCharacter
+    private let disneyCharacter: DisneyCharacter
+    
+    private let imageVariable: Variable<UIImage>
+    private let nameVariable: Variable<String>
+    private let descriptionVariable: BehaviorRelay<String>
     
     init(disneyCharacter: DisneyCharacter) {
         self.disneyCharacter = disneyCharacter
+        self.imageVariable = Variable(disneyCharacter.image)
+        self.nameVariable = Variable(disneyCharacter.name)
+        self.descriptionVariable = BehaviorRelay(value: disneyCharacter.description)
     }
     
-    var image: UIImage {
-        return disneyCharacter.image
+    var imageObservable: Observable<UIImage> {
+        return imageVariable.asObservable()
     }
     
-    var name: String {
-        return disneyCharacter.name
+    var nameObservable: Observable<String> {
+        return nameVariable.asObservable()
     }
     
-    var description: String {
-        return disneyCharacter.description
+    var descriptionObservable: Observable<String> {
+        return descriptionVariable.asObservable()
     }
 }
 
@@ -40,6 +49,11 @@ class DisneyCharacterCell: UITableViewCell {
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var disposeBag: DisposeBag!
+    var viewModel: DisneyCharacterCellProtocol? {
+        didSet { bind() }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,9 +69,21 @@ class DisneyCharacterCell: UITableViewCell {
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
     }
     
-    func populateWith(viewModel: DisneyCharacterCellProtocol) {
-        self.characterImageView.image = viewModel.image
-        self.nameLabel.text = viewModel.name
-        self.descriptionLabel.text = viewModel.description
+    private func bind() {
+        disposeBag = DisposeBag()
+        
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.nameObservable
+            .bind(to: nameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.descriptionObservable
+            .bind(to: descriptionLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.imageObservable
+            .bind(to: characterImageView.rx.image)
+            .disposed(by: disposeBag)
     }
 }

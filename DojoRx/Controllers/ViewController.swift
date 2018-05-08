@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var characters: [DisneyCharacter] = []
+    let network = Network()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        
-        let network = Network()
-        characters = network.getCharacters()
+        bind()
     }
     
     private func configureTableView() {
@@ -27,31 +28,68 @@ class ViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         tableView.register(UINib(nibName: DisneyCharacterCell.identifier, bundle: nil), forCellReuseIdentifier: DisneyCharacterCell.identifier)
+    }
+    
+    private func bind() {
+//        network.getCharacters()
+//            .bind(to: tableView.rx.items(cellIdentifier: DisneyCharacterCell.identifier, cellType: DisneyCharacterCell.self)) { (row, disneyCharacter, cell) in
+//                cell.populateWith(viewModel: DisneyCharacterCellViewModel(disneyCharacter: disneyCharacter))
+//            }
+//            .disposed(by: disposeBag)
+        
+        network.getCharacters()
+            .bind(to: tableView.rx.items(cellIdentifier: DisneyCharacterCell.identifier, cellType: DisneyCharacterCell.self)) { (row, disneyCharacter, cell) in
+                cell.viewModel = DisneyCharacterCellViewModel(disneyCharacter: disneyCharacter)
+        }
+        .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind { self.tableView.deselectRow(at: $0, animated: true) }
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(DisneyCharacter.self)
+            .subscribe { (event) in
+                switch event {
+                case .next(let disneyCharacter):
+                    print("Did tap on \(disneyCharacter.name)")
+                case .error(let error):
+                    print(error.localizedDescription)
+                case .completed:
+                    print("Did complete")
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: DisneyCharacterCell.identifier, for: indexPath) as? DisneyCharacterCell {
-            cell.populateWith(viewModel: DisneyCharacterCellViewModel(disneyCharacter: characters[indexPath.row]))
-            return cell
-        }
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
+// Each separate event
+//        tableView.rx
+//            .modelSelected(DisneyCharacter.self)
+//            .subscribe(onNext: { (disneyCharacter) in
+//                print("Did tap on \(disneyCharacter)")
+//            }, onError: { (error) in
+//                print(error.localizedDescription)
+//            }, onCompleted: {
+//                print("Did complete")
+//            }, onDisposed: {
+//                print("Did dispose")
+//            })
+//            .disposed(by: disposeBag)
+
+// Only on Next (ignoring the rest)
+//        tableView.rx
+//            .modelSelected(DisneyCharacter.self)
+//            .subscribe(onNext: { (disneyCharacter) in
+//                print("Did tap \(disneyCharacter.name)")
+//            })
+//            .disposed(by: disposeBag)
+
+// Explain it only accespts onNext
+//        tableView.rx
+//            .modelSelected(DisneyCharacter.self)
+//            .bind { (disneyCharacter) in
+//                print("Did tap on \(disneyCharacter.name)")
+//            }
+//            .disposed(by: disposeBag)
