@@ -10,11 +10,6 @@ import Foundation
 
 class Network {
     
-    //        "Hiro", "Tadashi"
-    //        "Edna Mode", "Stitch"
-    //        "Dory"
-    //        "Lilo", "Fix-It Felix, Jr."
-    
     private let characters = [
         DisneyCharacter(image: #imageLiteral(resourceName: "anger"), name: "Anger", description: "That's Anger. He cares very deeply about things being fair."),
         DisneyCharacter(image: #imageLiteral(resourceName: "anna"), name: "Anna of Arendelle", description: "Anna is the most caring, optimistic, and determined person you’ll ever meet."),

@@ -13,12 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var characters: [DisneyCharacter] = []
+    let network = Network()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         
-        let network = Network()
         characters = network.getCharacters()
     }
     
