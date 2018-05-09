@@ -51,23 +51,6 @@ class Network {
         }
     }
     
-//    func getCharacters() -> Single<[DisneyCharacter]> {
-//        return Single.create { [weak self] (observer) in
-//            guard let characters = self?.characters else {
-//                observer(.error(NSError(domain: "Failed to get characters!!", code: -1)))
-//                return Disposables.create()
-//            }
-//
-//            if characters.isEmpty {
-//                observer(.error(NSError(domain: "Characters are empty!!", code: -1)))
-//            } else {
-//                observer(.success(characters))
-//            }
-//
-//            return Disposables.create()
-//        }
-//    }
-    
     func getCharacterOf(name: String) -> Single<DisneyCharacter> {
         return Single.create { [weak self] (observer) in
             guard let characters = self?.characters else {

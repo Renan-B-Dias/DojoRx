@@ -32,12 +32,6 @@ class ViewController: UIViewController {
     }
     
     private func bind() {
-//        network.getCharacters()
-//            .bind(to: tableView.rx.items(cellIdentifier: DisneyCharacterCell.identifier, cellType: DisneyCharacterCell.self)) { (row, disneyCharacter, cell) in
-//                cell.populateWith(viewModel: DisneyCharacterCellViewModel(disneyCharacter: disneyCharacter))
-//            }
-//            .disposed(by: disposeBag)
-        
         network.getCharacters()
             .bind(to: tableView.rx.items(cellIdentifier: DisneyCharacterCell.identifier, cellType: DisneyCharacterCell.self)) { (row, disneyCharacter, cell) in
                 cell.viewModel = DisneyCharacterCellViewModel(disneyCharacter: disneyCharacter)
@@ -63,6 +57,12 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 }
+
+//        network.getCharacters()
+//            .bind(to: tableView.rx.items(cellIdentifier: DisneyCharacterCell.identifier, cellType: DisneyCharacterCell.self)) { (row, disneyCharacter, cell) in
+//                cell.populateWith(viewModel: DisneyCharacterCellViewModel(disneyCharacter: disneyCharacter))
+//            }
+//            .disposed(by: disposeBag)
 
 // Each separate event
 //        tableView.rx
