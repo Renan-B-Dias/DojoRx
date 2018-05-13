@@ -17,6 +17,8 @@
 		84BA6785204E1BFF001C22FF /* DisneyCharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84BA6783204E1BFF001C22FF /* DisneyCharacterCell.xib */; };
 		84CBFDE7207309B7005AD8A2 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBFDE6207309B7005AD8A2 /* Network.swift */; };
 		84DCBBFC205319B400DDFC05 /* DisneyCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DCBBFB205319B400DDFC05 /* DisneyCharacter.swift */; };
+		84F98F7620A39B7C00C2D9A8 /* DisneyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F98F7420A39B7C00C2D9A8 /* DisneyDetailsViewController.swift */; };
+		84F98F7720A39B7C00C2D9A8 /* DisneyDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F98F7520A39B7C00C2D9A8 /* DisneyDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		84BA6783204E1BFF001C22FF /* DisneyCharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisneyCharacterCell.xib; sourceTree = "<group>"; };
 		84CBFDE6207309B7005AD8A2 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Network.swift; path = DojoRx/domain/utils/Network.swift; sourceTree = SOURCE_ROOT; };
 		84DCBBFB205319B400DDFC05 /* DisneyCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisneyCharacter.swift; sourceTree = "<group>"; };
+		84F98F7420A39B7C00C2D9A8 /* DisneyDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisneyDetailsViewController.swift; sourceTree = "<group>"; };
+		84F98F7520A39B7C00C2D9A8 /* DisneyDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisneyDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +113,8 @@
 		84DCBBFD20531EE300DDFC05 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				84DCBBFF20531EF700DDFC05 /* views */,
-				84BA677E204E1A05001C22FF /* ViewController.swift */,
-				84BA677F204E1A05001C22FF /* ViewController.xib */,
+				84F98F7320A39B5200C2D9A8 /* details */,
+				84F98F7220A39B4200C2D9A8 /* list */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -132,6 +135,25 @@
 				84BA6783204E1BFF001C22FF /* DisneyCharacterCell.xib */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		84F98F7220A39B4200C2D9A8 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				84DCBBFF20531EF700DDFC05 /* views */,
+				84BA677E204E1A05001C22FF /* ViewController.swift */,
+				84BA677F204E1A05001C22FF /* ViewController.xib */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
+		84F98F7320A39B5200C2D9A8 /* details */ = {
+			isa = PBXGroup;
+			children = (
+				84F98F7420A39B7C00C2D9A8 /* DisneyDetailsViewController.swift */,
+				84F98F7520A39B7C00C2D9A8 /* DisneyDetailsViewController.xib */,
+			);
+			path = details;
 			sourceTree = "<group>";
 		};
 		F5B16B7DEAB0A2A80D1A4B43 /* Frameworks */ = {
@@ -204,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F98F7720A39B7C00C2D9A8 /* DisneyDetailsViewController.xib in Resources */,
 				84BA6777204E1700001C22FF /* LaunchScreen.storyboard in Resources */,
 				84BA6785204E1BFF001C22FF /* DisneyCharacterCell.xib in Resources */,
 				84BA6781204E1A05001C22FF /* ViewController.xib in Resources */,
@@ -275,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CBFDE7207309B7005AD8A2 /* Network.swift in Sources */,
+				84F98F7620A39B7C00C2D9A8 /* DisneyDetailsViewController.swift in Sources */,
 				84BA6780204E1A05001C22FF /* ViewController.swift in Sources */,
 				84DCBBFC205319B400DDFC05 /* DisneyCharacter.swift in Sources */,
 				84BA6784204E1BFF001C22FF /* DisneyCharacterCell.swift in Sources */,

@@ -19,14 +19,14 @@ protocol DisneyCharacterCellProtocol {
 class DisneyCharacterCellViewModel: DisneyCharacterCellProtocol {
     private let disneyCharacter: DisneyCharacter
     
-    private let imageVariable: Variable<UIImage>
-    private let nameVariable: Variable<String>
+    private let imageVariable: BehaviorRelay<UIImage>
+    private let nameVariable: BehaviorRelay<String>
     private let descriptionVariable: BehaviorRelay<String>
     
     init(disneyCharacter: DisneyCharacter) {
         self.disneyCharacter = disneyCharacter
-        self.imageVariable = Variable(disneyCharacter.image)
-        self.nameVariable = Variable(disneyCharacter.name)
+        self.imageVariable = BehaviorRelay(value: disneyCharacter.image)
+        self.nameVariable = BehaviorRelay(value: disneyCharacter.name)
         self.descriptionVariable = BehaviorRelay(value: disneyCharacter.description)
     }
     

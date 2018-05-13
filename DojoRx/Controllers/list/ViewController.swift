@@ -47,7 +47,10 @@ class ViewController: UIViewController {
             .subscribe { (event) in
                 switch event {
                 case .next(let disneyCharacter):
-                    print("Did tap on \(disneyCharacter.name)")
+                    let detailsViewController = DisneyDetailsViewController()
+                    detailsViewController.characterViewModel = DisneyDetailsViewControllerViewModel(character: disneyCharacter)
+                    let navigationController = UINavigationController(rootViewController: detailsViewController)
+                    self.present(navigationController, animated: true)
                 case .error(let error):
                     print(error.localizedDescription)
                 case .completed:
